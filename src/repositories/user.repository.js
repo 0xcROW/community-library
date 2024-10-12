@@ -15,25 +15,15 @@ function createUserRepository(newUser) {
         const { username, email, password, avatar } = newUser;
         db.run(
             `
-            INSERT INTO users (
-            username,
-            email,
-            password,
-            avatar
-            )
-            VALUES (
-            ?,
-            ?,
-            ?,
-            ?
-            )
+            INSERT INTO users (username, email, password, avatar)
+            VALUES (?, ?, ?, ?)
             `
             [username, email, password, avatar],
             (err) => {
                 if(err) {
                     rej(err)
                 } else {
-                    res({ message: "User created" })
+                    res({ id: this.lastID, ...newUser })
                 }
             }
         )
