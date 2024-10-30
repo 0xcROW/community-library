@@ -17,17 +17,18 @@ function createUserRepository(newUser) {
             `
             INSERT INTO users (username, email, password, avatar)
             VALUES (?, ?, ?, ?)
-            `
+            `,
             [username, email, password, avatar],
             (err) => {
                 if(err) {
                     rej(err)
                 } else {
-                    res({ id: this.lastID, ...newUser })
+                    // res({ id: this.lastID, ...newUser })
+                    res({message: "User created"})
                 }
             }
-        )
-    })
+        );
+    });
 }
 
 export default {
