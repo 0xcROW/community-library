@@ -23,8 +23,8 @@ function createUserRepository(newUser) {
                 if(err) {
                     rej(err)
                 } else {
-                    // res({ id: this.lastID, ...newUser })
-                    res({message: "User created"})
+                    res({ id: this.lastID, ...newUser })
+                    // res({message: "User created"})
                 }
             }
         );

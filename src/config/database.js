@@ -4,7 +4,7 @@ const db = new sqlite3.Database('library_db.sqlite', (err) => {
     if (err) {
         console.log(err.message)
     } else {
-        console.log('Connected')
+        console.log('Connected to database')
     }
 });
 
