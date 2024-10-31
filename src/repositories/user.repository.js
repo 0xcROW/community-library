@@ -8,7 +8,7 @@ db.run(`
     password TEXT NOT NULL,
     avatar TEXT
     )
-    `)
+`)
 
 function createUserRepository(newUser) {
     return new Promise((res, rej) => {
@@ -18,7 +18,7 @@ function createUserRepository(newUser) {
             INSERT INTO users (username, email, password, avatar)
             VALUES (?, ?, ?, ?)
             `,
-            [username, email, password, avatar],
+            [username, email, password, avatar], //Securing the parameters against injection
             (err) => {
                 if(err) {
                     rej(err)
@@ -31,6 +31,24 @@ function createUserRepository(newUser) {
     });
 }
 
+function findUserByEmailRepository(email){
+    return new Promise((res, rej) => {
+        db.get(`
+                SELECT id, username, email, avatar
+                FROM users
+                WHERE email = ?
+            `, [email], //Securing the parameter against injection
+                (err, row) => {
+                    if(err) {
+                        rej(err)
+                    } else {
+                        res(row)
+                    }
+            })
+    })
+}
+
 export default {
-    createUserRepository
+    createUserRepository,
+    findUserByEmailRepository
 }
