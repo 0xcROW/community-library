@@ -48,7 +48,60 @@ function findUserByEmailRepository(email){
     })
 }
 
+function findUserByIdRepository(id){
+    return new Promise((res, rej) => {
+        db.get(`
+                SELECT id, username, email, avatar
+                FROM users
+                WHERE id = ?
+            `, [id], //Securing the parameter against injection
+                (err, row) => {
+                    if(err) {
+                        rej(err)
+                    } else {
+                        res(row)
+                    }
+            })
+    })
+}
+
+function findAllUsersRepository(){
+    return new Promise((res, rej) => {
+        db.all(`
+                SELECT id, username, email, avatar
+                FROM users
+            `, [], //Securing the parameter against injection
+            (err, rows) => {
+                if(err) {
+                    rej(err)
+                } else {
+                    res(rows)
+                }
+            })
+    })
+}
+
+function updateUserRepository(id, user){
+    return new Promise((res, rej) => {
+        const { username, email, password, avatar } = user;
+        db.run(`
+                UPDATE users SET username = ?, email = ?, password = ?, avatar = ?
+                WHERE id = ?
+            `, [username, email, password, avatar, id], //Securing the parameter against injection
+                (err) => {
+                    if(err) {
+                        rej(err)
+                    } else {
+                        res({ id, ...user })
+                    }
+            })
+    })
+}
+
 export default {
     createUserRepository,
-    findUserByEmailRepository
+    findUserByEmailRepository,
+    findUserByIdRepository,
+    findAllUsersRepository,
+    updateUserRepository
 }

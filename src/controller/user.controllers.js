@@ -11,6 +11,42 @@ async function createUserController(req, res) {
     }
 }
 
+async function findAllUsersController(req, res) {
+
+    try {
+        const user = await userService.findAllUsersService();
+        res.status(200).send({ user });
+    } catch (err) {
+        res.status(404).send(err.message);
+    }
+}
+
+async function findByIdController(req, res) {
+    const { id } = req.params;
+
+    try {
+        const user = await userService.findUserByIdService(id);
+        return res.status(200).send({ user });
+    } catch (error) {
+        return res.status(404).send(error.message);
+    }
+}
+
+async function updateUserController(req, res) {
+    const { id } = req.params;
+    const newUser = req.body;
+    
+    try {
+        const user = await userService.updateUserService(newUser, id);
+        res.status(200).send({ user });
+    } catch (error) {
+        res.status(404).send(error.message);
+    }
+}
+
 export default {
-    createUserController
+    createUserController,
+    findAllUsersController,
+    findByIdController,
+    updateUserController
 }
