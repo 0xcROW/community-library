@@ -24,7 +24,6 @@ function createUserRepository(newUser) {
                     rej(err)
                 } else {
                     res({ id: this.lastID, ...newUser })
-                    // res({message: "User created"})
                 }
             }
         );
@@ -84,15 +83,42 @@ function findAllUsersRepository(){
 function updateUserRepository(id, user){
     return new Promise((res, rej) => {
         const { username, email, password, avatar } = user;
+        const data = ['username', 'email', 'password', 'avatar'];
+        let query = 'UPDATE users SET';
+        const values = [];
+
+        data.forEach((item) => {
+            if(user[item] !== undefined) {
+                query += ` ${item} = ?,`;
+                values.push(user[item]);
+            }
+        });
+
+        query = query.slice(0, -1); //Remove the last comma
+        query += ` WHERE id = ?`;
+        values.push(id);
+
+        db.run(query, values, (err) => {
+            if(err) {
+                rej(err)
+            } else {
+                res({ id, ...user })
+            }
+        });
+    })
+}
+
+async function deleteUserRepository(id){
+    return new Promise((res, rej) => {
         db.run(`
-                UPDATE users SET username = ?, email = ?, password = ?, avatar = ?
+                DELETE FROM users
                 WHERE id = ?
-            `, [username, email, password, avatar, id], //Securing the parameter against injection
+            `, [id], //Securing the parameter against injection
                 (err) => {
                     if(err) {
                         rej(err)
                     } else {
-                        res({ id, ...user })
+                        res({message: "User deleted"})
                     }
             })
     })
@@ -103,5 +129,6 @@ export default {
     findUserByEmailRepository,
     findUserByIdRepository,
     findAllUsersRepository,
-    updateUserRepository
+    updateUserRepository,
+    deleteUserRepository
 }
