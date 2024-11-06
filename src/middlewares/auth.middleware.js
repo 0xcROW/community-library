@@ -1,6 +1,6 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
-import userService from "../service/user.services.js";
+import userService from "../services/user.services.js";
 
 export function authMiddleware(req, res, next) {
   const tokenHeader = req.headers.authorization; // Get token from header
