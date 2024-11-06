@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "community-library",
     "collectionId": "da8f2812-5426-4ab2-9ed6-6be46a1aaf4e",
-    "dateExported": "2024-11-05T20:36:44.584Z",
+    "dateExported": "2024-11-06T03:14:49.823Z",
     "version": "1.2",
     "folders": [],
     "requests": [
@@ -15,11 +15,11 @@
             "method": "POST",
             "sortNum": 10000,
             "created": "2024-10-30T23:51:14.447Z",
-            "modified": "2024-11-05T20:31:59.760Z",
+            "modified": "2024-11-06T02:55:12.399Z",
             "headers": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"username\": \"teste_a_ser_atualizado3\",\n  \"email\": \"aseratualizado3@email.com\",\n  \"password\": \"senhaalterada\",\n  \"avatar\": \"https://domain.tld/fqdn\"\n}",
+                "raw": "{\n  \"username\": \"teste\",\n  \"email\": \"teste@email.com\",\n  \"password\": \"teste1\",\n  \"avatar\": \"https://domain.tld/fqdn\"\n}",
                 "form": []
             }
         },
@@ -32,8 +32,30 @@
             "method": "GET",
             "sortNum": 20000,
             "created": "2024-11-04T21:19:05.861Z",
-            "modified": "2024-11-04T21:19:14.025Z",
-            "headers": []
+            "modified": "2024-11-06T03:14:35.916Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTczMDg2MjY2MiwiZXhwIjoxNzMwOTQ5MDYyfQ.tE-FkqsBOmDySZWs1gbIaJLK9pAzmLrIWmkiXzHfIl8"
+                }
+            ]
+        },
+        {
+            "_id": "ef86b19d-17b7-4b94-8d5c-efab33b8e38f",
+            "colId": "da8f2812-5426-4ab2-9ed6-6be46a1aaf4e",
+            "containerId": "",
+            "name": "LOGIN users",
+            "url": "http://localhost:3000/users/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-11-06T01:10:17.839Z",
+            "modified": "2024-11-06T03:11:02.424Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"dimi2asasas2ss@email.com\",\n  \"password\": \"sesnhaalterada\"\n}",
+                "form": []
+            }
         },
         {
             "_id": "5f2a700e-bcb3-41c6-8b04-af29aa79c799",
@@ -69,11 +91,11 @@
             "colId": "da8f2812-5426-4ab2-9ed6-6be46a1aaf4e",
             "containerId": "",
             "name": "DELETE users",
-            "url": "http://localhost:3000/users/4",
+            "url": "http://localhost:3000/users/13",
             "method": "DELETE",
             "sortNum": 50000,
             "created": "2024-11-05T19:50:04.389Z",
-            "modified": "2024-11-05T19:55:42.914Z",
+            "modified": "2024-11-05T23:02:49.979Z",
             "headers": [],
             "body": {
                 "type": "json",
@@ -82,5 +104,5 @@
             }
         }
     ],
-    "ref": "1l-dDShqWiy4aDMwFntcfdC-un-Gz2AJlicOMlBXMZeKMriDI886cSuCtf7_sRH74ohmU6q1p3ISbpouE9RU4A"
+    "ref": "1l-dDShqWiy4aDMwFntcffINuXZVhSk7xCbmd4sJ3W8DxhSSvrt95qObXGc3FLzMIXZ9stasN8PL8nF-NjNm0w"
 }
