@@ -19,7 +19,7 @@ function createUserRepository(newUser) {
             VALUES (?, ?, ?, ?)
             `,
             [username, email, password, avatar], //Securing the parameters against injection
-            (err) => {
+            function (err) {
                 if(err) {
                     rej(err)
                 } else {
@@ -33,7 +33,7 @@ function createUserRepository(newUser) {
 function findUserByEmailRepository(email){
     return new Promise((res, rej) => {
         db.get(`
-                SELECT id, username, email, avatar
+                SELECT id, username, email, avatar, password
                 FROM users
                 WHERE email = ?
             `, [email], //Securing the parameter against injection
