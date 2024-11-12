@@ -7,8 +7,7 @@ async function createBookService(newBook, userId) {
 }
 
 async function findAllBooksService() {
-  const books = await bookRepository.findAllBooksRepository();
-  return books;
+  return await bookRepository.findAllBooksRepository();
 }
 
 async function findBookByIdService(bookId) {
@@ -28,8 +27,13 @@ async function deleteBookService(bookId, userId) {
   const book = await bookRepository.findBookByIdRepository(bookId);
   if (!book) throw new Error('Book not found');
   if (book.userId !== userId) throw new Error('Unauthorized');
-  const response = await bookRepository.deleteBookRepository(bookId);
-  return response;
+  return await bookRepository.deleteBookRepository(bookId);
+}
+
+async function searchBooksService(query) {
+  // if (!query) throw new Error('Query not found');
+  if (!query) return await bookRepository.findAllBooksRepository();
+  return await bookRepository.searchBooksRepository(query);
 }
 
 export default {
@@ -37,5 +41,6 @@ export default {
     findAllBooksService,
     findBookByIdService,
     updateBookService,
-    deleteBookService
+    deleteBookService,
+    searchBooksService
 }
