@@ -10,60 +10,60 @@ db.run(`CREATE TABLE IF NOT EXISTS loans (
 )`);
 
 function createLoanRepository(userId, bookId, dueDate) {
-    return new Promise((resolve, reject) => {
-        db.run(`
+  return new Promise((resolve, reject) => {
+    db.run(`
             INSERT INTO loans (userId, bookId, dueDate) VALUES (?, ?, ?)
             `, [userId, bookId, dueDate],
-            function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({ id: this.lastID, userId, bookId, dueDate });
-            }
-        });
+    function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ id: this.lastID, userId, bookId, dueDate });
+      }
     });
+  });
 }
 
 function findAllLoansRepository() {
-    return new Promise((resolve, reject) => {
-        db.all(`SELECT * FROM loans`, [], (err, rows) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(rows);
-            }
-        });
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM loans', [], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
     });
+  });
 }
 
 function findLoanByIdRepository(loanId) {
-    return new Promise((resolve, reject) => {
-        db.get(`SELECT * FROM loans WHERE id = ?`, [loanId], (err, row) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(row);
-            }
-        });
+  return new Promise((resolve, reject) => {
+    db.get('SELECT * FROM loans WHERE id = ?', [loanId], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
     });
+  });
 }
 
 
 function deleteLoanRepository(loanId) {
-    return new Promise((resolve, reject) => {
-        db.run(`DELETE FROM loans WHERE id = ?`, [loanId], function (err) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve({message: "Loan successfully deleted", loanId});
-            }
-        });
+  return new Promise((resolve, reject) => {
+    db.run('DELETE FROM loans WHERE id = ?', [loanId], function (err) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ message: 'Loan successfully deleted', loanId });
+      }
     });
+  });
 }
 
 export default {
-    createLoanRepository,
-    findAllLoansRepository,
-    findLoanByIdRepository,
-    deleteLoanRepository
+  createLoanRepository,
+  findAllLoansRepository,
+  findLoanByIdRepository,
+  deleteLoanRepository
 };

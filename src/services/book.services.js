@@ -1,4 +1,4 @@
-import bookRepository from "../repositories/book.repository.js";
+import bookRepository from '../repositories/book.repository.js';
 
 async function createBookService(newBook, userId) {
   const createdBook = await bookRepository.createBookRepository(newBook, userId);
@@ -37,10 +37,10 @@ async function searchBooksService(query) {
 }
 
 export default {
-    createBookService,
-    findAllBooksService,
-    findBookByIdService,
-    updateBookService,
-    deleteBookService,
-    searchBooksService
-}
+  createBookService,
+  findAllBooksService,
+  findBookByIdService,
+  updateBookService,
+  deleteBookService,
+  searchBooksService
+};

@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const bookSchema = z.object({
-    title: z.string().min(1, 'Title must have at least 1 character'),
-    author: z.string().min(1, 'Author must have at least 1 character'),
+  title: z.string().min(1, 'Title must have at least 1 character'),
+  author: z.string().min(1, 'Author must have at least 1 character'),
 });
 
 export const bookIdSchema = z.object({
-    id: z.number().int().positive(),
+  id: z.number().int().positive(),
 });
