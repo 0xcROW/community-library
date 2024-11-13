@@ -3,6 +3,7 @@ import userRoutes from './src/routes/user.routes.js';
 import bookRoutes from './src/routes/book.routes.js';
 import loanRoutes from './src/routes/loan.routes.js';
 import 'dotenv/config';
+import './src/services/cron.service.js';
 
 const app = express();
 const port = process.env.PORT || 3000;

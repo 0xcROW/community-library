@@ -29,7 +29,7 @@ function sendEmail(email, bookTitle, dueDate) {
     if (error) {
       console.error(error);
     } else {
-      console.info('Email sent: ' + info.response);
+      console.log('Email sent: ' + info.response);
     }
   });
 }
