@@ -12,15 +12,16 @@ async function createUserService(newUser) {
     return token;
 }
 
-async function findAllUsersService(){
-    return await userRepository.findAllUsersRepository();
-}
+async function findAllUsersService() {
+    const users = await userRepository.findAllUsersRepository();
+    return users;
+  }
 
-async function findUserByIdService(id){
+async function findUserByIdService(id) {
     const user = await userRepository.findUserByIdRepository(id);
-    if(!user) throw new Error("User not found!");
-    return user; 
-}
+    if (!user) throw new Error("User not found");
+    return user;
+  }
 
 async function updateUserService(newUser, newId) {
     const user = await userRepository.findUserByIdRepository(newId);

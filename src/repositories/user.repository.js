@@ -103,7 +103,6 @@ function updateUserRepository(id, user){
                 rej(err)
             } else {
                 res({ id, ...user })
-                console.log(query, values)
             }
         });
     })
